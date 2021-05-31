@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Solar Charging System</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/9699cb3eda.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      body {
+        overflow: hidden;
+      }
+      .ic-text {
+        margin-left: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      let auto = false;
+      const toggleAuto = () => {
+        if (!auto) {
+          bvs = document.getElementById("bvSelect");
+          cinput = document.getElementById("currentInput");
+
+          bvs.setAttribute("disabled", true);
+          cinput.setAttribute("disabled", true);
+          auto = true;
+        } else {
+          auto = false;
+          bvs.removeAttribute("disabled");
+          cinput.removeAttribute("disabled");
+        }
+      };
+    </script>
+    <div class="container-fluid" style="padding: 0px">
+      <nav
+        class="navbar navbar-expand-md navbar-dark bg-dark"
+        aria-label="Fourth navbar example"
+      >
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Smart Solar Charging System</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarsExample04"
+            aria-controls="navbarsExample04"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarsExample04">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+              <li class="nav-item">
+                <a class="nav-link active" href="#"
+                  ><i class="fas fa-home"></i
+                  ><span class="ic-text">Home</span></a
+                >
+              </li>
+              <li
+                class="nav-item"
+                data-bs-toggle="modal"
+                data-bs-target="#settingModal"
+              >
+                <a class="nav-link" href="#"
+                  ><i class="fas fa-cog"></i>
+                  <span class="ic-text">Settings</span>
+                </a>
+              </li>
+              <li
+                class="nav-item"
+                data-bs-toggle="modal"
+                data-bs-target="#historyModal"
+              >
+                <a class="nav-link" href="#"
+                  ><i class="fas fa-book"></i>
+                  <span class="ic-text">History</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div
+        style="
+          border-left: 5px solid gray;
+          background: rgba(200, 200, 200, 0.25);
+          width: 320px;
+          border-radius: 0px 0px 15px 0px;
+        "
+      >
+        <div style="margin-left: 12px">
+          <div>
+            <i class="fas fa-calendar-day" style="font-size: 40px"></i>
+            <span class="ic-text"
+              ><script>
+                document.write(
+                  `<span style="font-size: 40px">${moment().format(
+                    "MMM D, YYYY"
+                  )}</span>`
+                );
+              </script></span
+            >
+          </div>
+          <div style="font-size: 40px" class="row">
+            <div class="col">
+              <i class="fas fa-temperature-low"></i><span>69°C</span>
+            </div>
+            <div class="col">
+              <i class="fas fa-tint ic-text"></i>
+              <span>69%</span>
+            </div>
+          </div>
+          <p style="font-size: 20px">Connection Status: On</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div
+          style="text-align: center; margin-top: 20px"
+          class="col col-12 col-lg-6"
+        >
+          <h1>
+            <i class="fas fa-solar-panel"></i
+            ><span class="ic-text">Solar Panel</span>
+          </h1>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-evenly;
+              text-align: start;
+            "
+          >
+            <div>
+              <h2>Voltage:</h2>
+              <h2>Current:</h2>
+              <h2>Power:</h2>
+              <h2>PWM:</h2>
+            </div>
+            <div style="text-align: end">
+              <h2>...V</h2>
+              <h2>...A</h2>
+              <h2>...W</h2>
+              <h2>...%</h2>
+            </div>
+          </div>
+        </div>
+        <div
+          style="text-align: center; margin-top: 20px"
+          class="col col-12 col-lg-6"
+        >
+          <h1>
+            <i class="fas fa-battery-three-quarters"></i>
+            <span class="ic-text">Battery</span>
+          </h1>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-evenly;
+              text-align: start;
+            "
+          >
+            <div>
+              <h2>SoC:</h2>
+              <h2>Voltage:</h2>
+              <h2>Current:</h2>
+              <h2>State:</h2>
+            </div>
+            <div style="text-align: end">
+              <h2>...%</h2>
+              <h2>...V</h2>
+              <h2>...A</h2>
+              <h2>....</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="settingModal"
+      tabindex="-1"
+      aria-labelledby="settingModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="settingModalLabel">Settings</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div
+            class="modal-body"
+            style="
+              height: 280px;
+              display: flex;
+              align-items: center;
+              justify-content: space-around;
+              flex-direction: column;
+            "
+          >
+            <div class="form-floating" style="width: 100%">
+              <select
+                class="form-select"
+                id="bvSelect"
+                aria-label="Floating label select example"
+              >
+                <option selected value="24">12</option>
+                <option value="24">24</option>
+              </select>
+              <label for="bvSelect">Battery Voltage (V)</label>
+            </div>
+            <div class="form-floating" style="width: 100%">
+              <input
+                type="number"
+                class="form-control"
+                id="currentInput"
+                value="0.5"
+                min="0.5"
+                max="2"
+                step="0.1"
+              />
+              <label for="currentInput">Max Charge Current (A)</label>
+            </div>
+            <div class="row" style="width: 100%">
+              <div
+                class="form-check form-switch col col-6"
+                style="display: flex; justify-content: center"
+              >
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="flexSwitchCheckDefault"
+                  checked
+                />
+                <label
+                  class="form-check-label ic-text"
+                  for="flexSwitchCheckDefault"
+                  >Enable Charger</label
+                >
+              </div>
+              <div
+                class="form-check form-switch col col-6"
+                style="display: flex; justify-content: center"
+              >
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="flexSwitchCheckDefault"
+                  onclick="toggleAuto()"
+                />
+                <label
+                  class="form-check-label ic-text"
+                  for="flexSwitchCheckDefault"
+                  >Auto-Mode</label
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="historyModal"
+      tabindex="-1"
+      aria-labelledby="historyModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="historyModalLabel">History</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">...</div>
+        </div>
+      </div>
+    </div>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
